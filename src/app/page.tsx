@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ThemeSelector from "@/components/ThemeSelector";
 import {
   themes,
@@ -38,6 +39,14 @@ export default function HomePage() {
           </p>
 
           <div className="mt-8">
+            <Link href="/trip/new">
+              <button className="rounded-2xl bg-white px-8 py-4 text-lg font-semibold text-slate-900 shadow-lg transition hover:bg-white/90 hover:shadow-xl">
+                Start Planning Free
+              </button>
+            </Link>
+          </div>
+
+          <div className="mt-6">
             <ThemeSelector
               value={theme}
               onChange={setTheme}
