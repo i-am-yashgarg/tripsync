@@ -1,29 +1,47 @@
+"use client";
+
+import { useState } from "react";
+import ThemeSelector from "@/components/ThemeSelector";
+import {
+  themes,
+  ThemeKey,
+} from "@/features/theme/themes";
+
 export default function HomePage() {
+  const [theme, setTheme] =
+    useState<ThemeKey>("forest");
+
+  const current = themes[theme];
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-emerald-100 to-sky-100">
+    <main
+      className={`min-h-screen bg-gradient-to-br ${current.background} transition-all duration-700`}
+    >
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="rounded-3xl border border-white/40 bg-white/50 p-10 shadow-xl backdrop-blur-md">
-          <p className="text-sm font-semibold tracking-widest text-emerald-700">
+        <div className="rounded-3xl border border-white/20 bg-white/10 p-10 shadow-2xl backdrop-blur-md">
+          <p className="text-sm tracking-widest text-white/80">
             TRIPSYNC
           </p>
 
-          <h1 className="mt-4 text-5xl font-bold text-slate-900">
-            Plan Dream Trips with AI
+          <h1
+            className={`mt-4 text-5xl font-bold ${current.accent}`}
+          >
+            {current.name}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg text-slate-700">
-            Build itineraries, manage group travel, discover destinations,
-            and experience immersive themes based on where you go.
+          <p className="mt-5 max-w-2xl text-lg text-white/90">
+            {current.subtitle}
           </p>
 
-          <div className="mt-8 flex gap-4">
-            <button className="rounded-2xl bg-slate-900 px-6 py-3 text-white hover:opacity-90">
-              Start Planning
-            </button>
+          <p className="mt-3 text-white/70">
+            AI-powered planning for unforgettable travel.
+          </p>
 
-            <button className="rounded-2xl border border-slate-300 px-6 py-3">
-              Explore Trips
-            </button>
+          <div className="mt-8">
+            <ThemeSelector
+              value={theme}
+              onChange={setTheme}
+            />
           </div>
         </div>
       </section>
